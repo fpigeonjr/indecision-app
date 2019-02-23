@@ -9,6 +9,11 @@ var person = {
   age: 40,
   location: 'San Antonio'
 };
+var app = {
+  title: 'Indecision',
+  subTitle: 'Put your life in the hands of a computer',
+  options: ['One', 'Two']
+};
 
 var template = React.createElement(
   React.Fragment,
@@ -16,7 +21,21 @@ var template = React.createElement(
   React.createElement(
     'h1',
     null,
-    'Did it change bro\uD83D\uDD25?'
+    app.title
+  ),
+  app.subTitle && React.createElement(
+    'h2',
+    null,
+    app.subTitle
+  ),
+  app.options && app.options.length > 0 ? React.createElement(
+    'p',
+    null,
+    'Here are your options'
+  ) : React.createElement(
+    'p',
+    null,
+    'No Options'
   ),
   React.createElement(
     'p',
@@ -45,27 +64,32 @@ var template = React.createElement(
   React.createElement('template2', null)
 );
 
-// challenge
-var template2 = React.createElement(
+function getLocation(location) {
+  if (location) {
+    return React.createElement(
+      'p',
+      null,
+      'location: ',
+      location
+    );
+  }
+}
+
+var templateTwo = React.createElement(
   React.Fragment,
   null,
   React.createElement(
     'h1',
     null,
-    person.name
+    person.name ? person.name : 'Anonymous'
   ),
-  React.createElement(
+  person.age && person.age > 18 && React.createElement(
     'p',
     null,
     'age: ',
     person.age
   ),
-  React.createElement(
-    'p',
-    null,
-    'location: ',
-    person.location
-  )
+  getLocation(person.location)
 );
 
-ReactDOM.render(template2, appRoot);
+ReactDOM.render(template, appRoot);
