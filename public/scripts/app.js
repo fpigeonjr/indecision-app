@@ -3,7 +3,12 @@
 console.log('App.js is running');
 
 // JSX  - JavaScript XML
-var name = 'Frank Pigeon';
+var appRoot = document.getElementById('app');
+var person = {
+  name: 'Frank Pigeon',
+  age: 40,
+  location: 'San Antonio'
+};
 
 var template = React.createElement(
   React.Fragment,
@@ -12,12 +17,6 @@ var template = React.createElement(
     'h1',
     null,
     'Did it change bro\uD83D\uDD25?'
-  ),
-  React.createElement(
-    'h2',
-    null,
-    'My name is ',
-    name
   ),
   React.createElement(
     'p',
@@ -42,9 +41,31 @@ var template = React.createElement(
       null,
       'Item Three'
     )
+  ),
+  React.createElement('template2', null)
+);
+
+// challenge
+var template2 = React.createElement(
+  React.Fragment,
+  null,
+  React.createElement(
+    'h1',
+    null,
+    person.name
+  ),
+  React.createElement(
+    'p',
+    null,
+    'age: ',
+    person.age
+  ),
+  React.createElement(
+    'p',
+    null,
+    'location: ',
+    person.location
   )
 );
 
-var appRoot = document.getElementById('app');
-
-ReactDOM.render(template, appRoot);
+ReactDOM.render(template2, appRoot);

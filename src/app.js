@@ -1,12 +1,16 @@
 console.log(`App.js is running`)
 
 // JSX  - JavaScript XML
-let name = 'Frank Pigeon'
+var appRoot = document.getElementById('app')
+let person = {
+  name: 'Frank Pigeon',
+  age: 40,
+  location: 'San Antonio'
+}
 
 let template = (
   <React.Fragment>
     <h1>Did it change bro🔥?</h1>
-    <h2>My name is {name}</h2>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore soluta
       quos impedit, assumenda dolor illo, totam eum labore minima eaque
@@ -18,9 +22,18 @@ let template = (
       <li>Item Two</li>
       <li>Item Three</li>
     </ol>
+    <template2 />
   </React.Fragment>
 )
 
-var appRoot = document.getElementById('app')
+// challenge
+let template2 = (
+  <React.Fragment>
+    <h1>{person.name}</h1>
+    <p>age: {person.age}</p>
+    <p>location: {person.location}</p>
+  </React.Fragment>
+)
 
-ReactDOM.render(template, appRoot)
+
+ReactDOM.render(template2, appRoot)
