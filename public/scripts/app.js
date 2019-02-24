@@ -1,53 +1,102 @@
 'use strict';
 
-// arguments object is no longer bound
+console.log('App.js is running');
 
-var add = function add(a, b) {
-  // console.log(arguments)
-  return a + b;
+// JSX  - JavaScript XML
+var appRoot = document.getElementById('app');
+
+var app = {
+  title: 'Indecision App',
+  subTitle: 'Put your life in the hands of a computer',
+  options: ['One', 'Two']
 };
 
-console.log(add(55, 1));
+var template = React.createElement(
+  React.Fragment,
+  null,
+  React.createElement(
+    'h1',
+    null,
+    app.title
+  ),
+  app.subTitle && React.createElement(
+    'h2',
+    null,
+    app.subTitle
+  ),
+  app.options && app.options.length > 0 ? React.createElement(
+    'p',
+    null,
+    'Here are your options'
+  ) : React.createElement(
+    'p',
+    null,
+    'No Options'
+  ),
+  React.createElement(
+    'p',
+    null,
+    'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore soluta quos impedit, assumenda dolor illo, totam eum labore minima eaque molestias, incidunt obcaecati? Porro itaque dicta doloremque sequi, ipsa cupiditate!'
+  ),
+  React.createElement(
+    'ol',
+    null,
+    React.createElement(
+      'li',
+      null,
+      'Item One'
+    ),
+    React.createElement(
+      'li',
+      null,
+      'Item Two'
+    ),
+    React.createElement(
+      'li',
+      null,
+      'Item Three'
+    )
+  )
+);
 
-// this key is no longer bound
+var count = 0;
 
-var user = {
-  name: 'Frank',
-  cities: ['Texas', 'Pennsylvania', 'South Carolina'],
-  printPlacesLived: function printPlacesLived() {
-    var _this = this;
-
-    // console.log(this.name)
-    // console.log(this.cities)
-
-    // map method
-    return this.cities.map(function (city) {
-      return _this.name + ' has lived in ' + city;
-    });
-
-    // foreach method
-    // this.cities.forEach(city => {
-    //   console.log(`${this.name} has lived in ${city}`)
-    // })
-  }
+var addOne = function addOne() {
+  console.log('add one');
 };
 
-console.log(user.printPlacesLived());
-
-// challenge area
-var multiplier = {
-  // numbers array
-  numbers: [2, 8, 10],
-  // multiply by - single number
-  multiplyBy: 2,
-  // multiply - method reutn a new array where numbers have been multiplied
-  multiply: function multiply() {
-    var _this2 = this;
-
-    return this.numbers.map(function (num) {
-      return num * _this2.multiplyBy;
-    });
-  }
+var minusOne = function minusOne() {
+  console.log('subtract one');
 };
 
-console.log(multiplier.multiply());
+var reset = function reset() {
+  console.log('reset counter');
+};
+
+var templateTwo = React.createElement(
+  React.Fragment,
+  null,
+  React.createElement(
+    'h1',
+    null,
+    'Count: ',
+    count
+  ),
+  React.createElement(
+    'button',
+    { onClick: addOne },
+    '+1'
+  ),
+  React.createElement(
+    'button',
+    { onClick: minusOne },
+    '-1'
+  ),
+  React.createElement(
+    'button',
+    { onClick: reset },
+    'Reset'
+  )
+);
+
+ReactDOM.render(templateTwo, appRoot);

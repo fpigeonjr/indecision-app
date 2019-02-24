@@ -2,13 +2,9 @@ console.log(`App.js is running`)
 
 // JSX  - JavaScript XML
 var appRoot = document.getElementById('app')
-const person = {
-  name: 'Frank Pigeon',
-  age: 40,
-  location: 'San Antonio'
-}
+
 const app = {
-  title: 'Indecision',
+  title: 'Indecision App',
   subTitle: 'Put your life in the hands of a computer',
   options: ['One', 'Two']
 }
@@ -33,22 +29,30 @@ const template = (
       <li>Item Two</li>
       <li>Item Three</li>
     </ol>
-    <template2 />
   </React.Fragment>
 )
 
-function getLocation(location) {
-  if (location) {
-    return <p>location: {location}</p>
-  }
+let count = 0
+
+const addOne = () => {
+  console.log('add one')
+}
+
+const minusOne = () => {
+  console.log('subtract one')
+}
+
+const reset = () => {
+  console.log('reset counter')
 }
 
 const templateTwo = (
   <React.Fragment>
-    <h1>{person.name ? person.name : 'Anonymous'}</h1>
-    {person.age && person.age > 18 && <p>age: {person.age}</p>}
-    {getLocation(person.location)}
+    <h1>Count: {count}</h1>
+    <button onClick={addOne}>+1</button>
+    <button onClick={minusOne}>-1</button>
+    <button onClick={reset}>Reset</button>
   </React.Fragment>
 )
 
-ReactDOM.render(template, appRoot)
+ReactDOM.render(templateTwo, appRoot)
