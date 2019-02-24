@@ -35,24 +35,30 @@ const template = (
 let count = 0
 
 const addOne = () => {
-  console.log('add one')
+  count += 1
+  renderCounterApp()
 }
 
 const minusOne = () => {
-  console.log('subtract one')
+  count -= 1
+  renderCounterApp()
 }
 
 const reset = () => {
-  console.log('reset counter')
+  count = 0
+  renderCounterApp()
 }
 
-const templateTwo = (
-  <React.Fragment>
-    <h1>Count: {count}</h1>
-    <button onClick={addOne}>+1</button>
-    <button onClick={minusOne}>-1</button>
-    <button onClick={reset}>Reset</button>
-  </React.Fragment>
-)
+const renderCounterApp = () => {
+  const templateTwo = (
+    <React.Fragment>
+      <h1>Count: {count}</h1>
+      <button onClick={addOne}>+1</button>
+      <button onClick={minusOne}>-1</button>
+      <button onClick={reset}>Reset</button>
+    </React.Fragment>
+  )
+  ReactDOM.render(templateTwo, appRoot)
+}
 
-ReactDOM.render(templateTwo, appRoot)
+renderCounterApp()
