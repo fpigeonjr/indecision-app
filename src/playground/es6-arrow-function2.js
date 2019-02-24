@@ -1,53 +1,43 @@
-'use strict';
-
 // arguments object is no longer bound
 
-var add = function add(a, b) {
+const add = (a, b) => {
   // console.log(arguments)
-  return a + b;
-};
+  return a + b
+}
 
-console.log(add(55, 1));
+console.log(add(55, 1))
 
 // this key is no longer bound
 
-var user = {
+const user = {
   name: 'Frank',
   cities: ['Texas', 'Pennsylvania', 'South Carolina'],
-  printPlacesLived: function printPlacesLived() {
-    var _this = this;
-
+  printPlacesLived() {
     // console.log(this.name)
     // console.log(this.cities)
 
     // map method
-    return this.cities.map(function (city) {
-      return _this.name + ' has lived in ' + city;
-    });
+    return this.cities.map(city => `${this.name} has lived in ${city}`)
 
     // foreach method
     // this.cities.forEach(city => {
     //   console.log(`${this.name} has lived in ${city}`)
     // })
   }
-};
+}
 
-console.log(user.printPlacesLived());
+console.log(user.printPlacesLived())
 
 // challenge area
-var multiplier = {
+const multiplier = {
   // numbers array
   numbers: [2, 8, 10],
   // multiply by - single number
   multiplyBy: 2,
   // multiply - method reutn a new array where numbers have been multiplied
-  multiply: function multiply() {
-    var _this2 = this;
-
-    return this.numbers.map(function (num) {
-      return num * _this2.multiplyBy;
-    });
+  multiply() {
+    return this.numbers.map(num => num * this.multiplyBy)
   }
-};
+}
 
-console.log(multiplier.multiply());
+console.log(multiplier.multiply())
