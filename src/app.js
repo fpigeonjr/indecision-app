@@ -2,18 +2,18 @@ console.log(`App.js is running`)
 
 // JSX  - JavaScript XML
 var appRoot = document.getElementById('app')
-let person = {
+const person = {
   name: 'Frank Pigeon',
   age: 40,
   location: 'San Antonio'
 }
-let app = {
+const app = {
   title: 'Indecision',
   subTitle: 'Put your life in the hands of a computer',
   options: ['One', 'Two']
 }
 
-let template = (
+const template = (
   <React.Fragment>
     <h1>{app.title}</h1>
     {app.subTitle && <h2>{app.subTitle}</h2>}
@@ -43,7 +43,7 @@ function getLocation(location) {
   }
 }
 
-let templateTwo = (
+const templateTwo = (
   <React.Fragment>
     <h1>{person.name ? person.name : 'Anonymous'}</h1>
     {person.age && person.age > 18 && <p>age: {person.age}</p>}

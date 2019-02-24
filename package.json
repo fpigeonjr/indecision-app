@@ -5,7 +5,8 @@
   "author": "Frank Pigeon",
   "license": "MIT",
   "scripts": {
-    "dev": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
+    "dev": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
+    "play": "babel src/playground/es6-let-const.js --out-file=public/scripts/app.js --presets=env,react --watch"
   },
   "dependencies": {
     "babel-preset-env": "1.5.2",
