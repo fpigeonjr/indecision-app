@@ -25,6 +25,11 @@ const removeAll = () => {
   renderCounterApp()
 }
 
+const onMakeDecision = () => {
+  const randomNum = Math.floor(Math.random() * app.options.length)
+  const option = app.options[randomNum]
+  alert(option)
+}
 
 const renderCounterApp = () => {
   const template = (
@@ -36,18 +41,21 @@ const renderCounterApp = () => {
       ) : (
         <p>No Options</p>
       )}
-      <p>{app.options.length}</p>
+
+      <button disabled={app.options.length === 0} onClick={onMakeDecision}>
+        What should I do?
+      </button>
       <button onClick={removeAll}>Remove All</button>
+
       <ol>
-        <li>Item One</li>
-        <li>Item Two</li>
-        <li>Item Three</li>
+        {app.options.map(option => (
+          <li key={option}>{option}</li>
+        ))}
       </ol>
       <form onSubmit={onFormSubmit}>
         <input type="text" name="option" />
         <button>Add Option</button>
       </form>
-
     </React.Fragment>
   )
   ReactDOM.render(template, appRoot)
