@@ -6,59 +6,51 @@ var appRoot = document.getElementById('app')
 const app = {
   title: 'Indecision App',
   subTitle: 'Put your life in the hands of a computer',
-  options: ['One', 'Two']
+  options: []
 }
 
-const template = (
-  <React.Fragment>
-    <h1>{app.title}</h1>
-    {app.subTitle && <h2>{app.subTitle}</h2>}
-    {app.options && app.options.length > 0 ? (
-      <p>Here are your options</p>
-    ) : (
-      <p>No Options</p>
-    )}
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore soluta
-      quos impedit, assumenda dolor illo, totam eum labore minima eaque
-      molestias, incidunt obcaecati? Porro itaque dicta doloremque sequi, ipsa
-      cupiditate!
-    </p>
-    <ol>
-      <li>Item One</li>
-      <li>Item Two</li>
-      <li>Item Three</li>
-    </ol>
-  </React.Fragment>
-)
+const onFormSubmit = e => {
+  e.preventDefault()
+  const option = e.target.elements.option.value
 
-let count = 0
-
-const addOne = () => {
-  count += 1
+  if (option) {
+    app.options.push(option)
+    e.target.elements.option.value = ''
+  }
   renderCounterApp()
 }
 
-const minusOne = () => {
-  count -= 1
+const removeAll = () => {
+  app.options = []
   renderCounterApp()
 }
 
-const reset = () => {
-  count = 0
-  renderCounterApp()
-}
 
 const renderCounterApp = () => {
-  const templateTwo = (
+  const template = (
     <React.Fragment>
-      <h1>Count: {count}</h1>
-      <button onClick={addOne}>+1</button>
-      <button onClick={minusOne}>-1</button>
-      <button onClick={reset}>Reset</button>
+      <h1>{app.title}</h1>
+      {app.subTitle && <h2>{app.subTitle}</h2>}
+      {app.options && app.options.length > 0 ? (
+        <p>Here are your options</p>
+      ) : (
+        <p>No Options</p>
+      )}
+      <p>{app.options.length}</p>
+      <button onClick={removeAll}>Remove All</button>
+      <ol>
+        <li>Item One</li>
+        <li>Item Two</li>
+        <li>Item Three</li>
+      </ol>
+      <form onSubmit={onFormSubmit}>
+        <input type="text" name="option" />
+        <button>Add Option</button>
+      </form>
+
     </React.Fragment>
   )
-  ReactDOM.render(templateTwo, appRoot)
+  ReactDOM.render(template, appRoot)
 }
 
 renderCounterApp()
