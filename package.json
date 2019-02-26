@@ -5,8 +5,9 @@
   "author": "Frank Pigeon",
   "license": "MIT",
   "scripts": {
+    "serve": "live-server public",
     "dev": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "play": "babel src/playground/es6-arrow-function2.js --out-file=public/scripts/app.js --presets=env,react --watch"
+    "play": "babel src/playground/build-it-visible.js --out-file=public/scripts/app.js --presets=env,react --watch"
   },
   "dependencies": {
     "babel-preset-env": "1.5.2",
