@@ -29,11 +29,11 @@ var renderApp = function renderApp() {
       { onClick: handleToggle },
       app.isToggled ? 'hide details' : 'show details'
     ),
-    app.isToggled ? React.createElement(
+    app.isToggled && React.createElement(
       'p',
       null,
       app.details
-    ) : null
+    )
   );
 
   ReactDOM.render(template, appRoot);

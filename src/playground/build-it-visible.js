@@ -21,7 +21,7 @@ const renderApp = () => {
         {app.isToggled ? 'hide details' : 'show details'}
       </button>
 
-      {app.isToggled ? <p>{app.details}</p> : null}
+      {app.isToggled && <p>{app.details}</p>}
     </React.Fragment>
   )
 
