@@ -1,42 +1,37 @@
 'use strict';
 
-console.log('build it is running');
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var appRoot = document.getElementById('app');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var app = {
-  title: 'Visibility Toggle',
-  isToggled: false,
-  details: 'You can now see me'
-};
+var Person = function () {
+  function Person() {
+    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Anonymous';
+    var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-var handleToggle = function handleToggle() {
-  app.isToggled = !app.isToggled;
-  renderApp();
-};
+    _classCallCheck(this, Person);
 
-var renderApp = function renderApp() {
-  var template = React.createElement(
-    React.Fragment,
-    null,
-    React.createElement(
-      'h1',
-      null,
-      app.title
-    ),
-    React.createElement(
-      'button',
-      { onClick: handleToggle },
-      app.isToggled ? 'hide details' : 'show details'
-    ),
-    app.isToggled && React.createElement(
-      'p',
-      null,
-      app.details
-    )
-  );
+    this.name = name;
+    this.age = age;
+  }
 
-  ReactDOM.render(template, appRoot);
-};
+  _createClass(Person, [{
+    key: 'getGreeting',
+    value: function getGreeting() {
+      return 'hi ' + this.name;
+    }
+  }, {
+    key: 'getDescription',
+    value: function getDescription() {
+      return this.name + ' is ' + this.age + ' year(s) old.';
+    }
+  }]);
 
-renderApp();
+  return Person;
+}();
+
+var me = new Person('Frank Pigeon', 40);
+console.log(me.getDescription());
+
+var other = new Person();
+console.log(other.getDescription());
