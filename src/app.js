@@ -1,64 +1,39 @@
-console.log(`App.js is running`)
-
-// JSX  - JavaScript XML
-var appRoot = document.getElementById('app')
-
-const app = {
-  title: 'Indecision App',
-  subTitle: 'Put your life in the hands of a computer',
-  options: []
-}
-
-const onFormSubmit = e => {
-  e.preventDefault()
-  const option = e.target.elements.option.value
-
-  if (option) {
-    app.options.push(option)
-    e.target.elements.option.value = ''
+class Header extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <h1>Indecision</h1>
+        <h2>Put Your Life in the Hands of a Computer</h2>
+      </React.Fragment>
+    )
   }
-  renderCounterApp()
 }
 
-const removeAll = () => {
-  app.options = []
-  renderCounterApp()
+class Action extends React.Component {
+  render() {
+    return <button>What Should I Do?</button>
+  }
 }
 
-const onMakeDecision = () => {
-  const randomNum = Math.floor(Math.random() * app.options.length)
-  const option = app.options[randomNum]
-  alert(option)
+class Options extends React.Component {
+  render() {
+    return <p>Options Component Here</p>
+  }
 }
 
-const renderCounterApp = () => {
-  const template = (
-    <React.Fragment>
-      <h1>{app.title}</h1>
-      {app.subTitle && <h2>{app.subTitle}</h2>}
-      {app.options && app.options.length > 0 ? (
-        <p>Here are your options</p>
-      ) : (
-        <p>No Options</p>
-      )}
-
-      <button disabled={app.options.length === 0} onClick={onMakeDecision}>
-        What should I do?
-      </button>
-      <button onClick={removeAll}>Remove All</button>
-
-      <ol>
-        {app.options.map(option => (
-          <li key={option}>{option}</li>
-        ))}
-      </ol>
-      <form onSubmit={onFormSubmit}>
-        <input type="text" name="option" />
-        <button>Add Option</button>
-      </form>
-    </React.Fragment>
-  )
-  ReactDOM.render(template, appRoot)
+class AddOption extends React.Component {
+  render() {
+    return <p>Add Options Component Here</p>
+  }
 }
 
-renderCounterApp()
+const jsx = (
+  <React.Fragment>
+    <Header />
+    <Action />
+    <Options />
+    <AddOption />
+  </React.Fragment>
+)
+
+ReactDOM.render(jsx, document.getElementById('app'))
