@@ -1,14 +1,42 @@
 class IndecisionApp extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      options: ['Thing One', 'Thing Two', 'Thing Four']
+    }
+    this.handleDeleteOptions = this.handleDeleteOptions.bind(this)
+    this.handlePick = this.handlePick.bind(this)
+  }
+
+  handleDeleteOptions() {
+    this.setState(() => {
+      return {
+        options: []
+      }
+    })
+  }
+
+  handlePick() {
+    const randomNum = Math.floor(Math.random() * this.state.options.length)
+    const option = this.state.options[randomNum]
+    alert(option)
+  }
+
   render() {
     const title = 'Indecision'
     const subTitle = 'Put Your Life in the hands of a Computer'
-    const options = ['Thing One', 'Thing Two', 'Thing Three']
 
     return (
       <React.Fragment>
         <Header title={title} subTitle={subTitle} />
-        <Action />
-        <Options options={options} />
+        <Action
+          hasOptions={this.state.options.length > 0}
+          handlePick={this.handlePick}
+        />
+        <Options
+          options={this.state.options}
+          handleDeleteOptions={this.handleDeleteOptions}
+        />
         <AddOption />
       </React.Fragment>
     )
@@ -27,26 +55,16 @@ class Header extends React.Component {
 }
 
 class Action extends React.Component {
-  handlePick() {
-    alert('handlePick')
-  }
-
   render() {
-    return <button onClick={this.handlePick}>What Should I Do?</button>
+    return (
+      <button disabled={!this.props.hasOptions} onClick={this.props.handlePick}>
+        What Should I Do?
+      </button>
+    )
   }
 }
 
 class Options extends React.Component {
-  constructor(props) {
-    super(props)
-    this.handleRemoveAll = this.handleRemoveAll.bind(this)
-  }
-
-  handleRemoveAll() {
-    console.log(this.props.options)
-    // alert('handleRemoveAll')
-  }
-
   render() {
     return (
       <React.Fragment>
@@ -54,7 +72,7 @@ class Options extends React.Component {
         {this.props.options.map((option, i) => (
           <Option key={i} optionText={option} />
         ))}
-        <button onClick={this.handleRemoveAll}>Remove All</button>
+        <button onClick={this.props.handleDeleteOptions}>Remove All</button>
       </React.Fragment>
     )
   }
